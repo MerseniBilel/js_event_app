@@ -112,7 +112,10 @@ class _OnBoardingState extends State<OnBoarding> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushReplacementNamed("register");
+                          },
                           child: const Text(
                             "Continue",
                             style: TextStyle(
