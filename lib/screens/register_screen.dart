@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:js_event_app/constants.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:js_event_app/constants.dart';
+import 'package:js_event_app/widgets/textfield_widget.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -158,30 +159,6 @@ class _SingUpFormState extends State<SingUpForm> {
             onChanged: (pass) => _password = pass,
           )
         ],
-      ),
-    );
-  }
-}
-
-class TextFieldName extends StatelessWidget {
-  const TextFieldName({
-    Key? key,
-    required this.fieldText,
-  }) : super(key: key);
-
-  final String fieldText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-          bottom: defaultPadding / 3, top: defaultPadding / 3),
-      child: Text(
-        fieldText,
-        style: const TextStyle(
-          fontWeight: FontWeight.w600,
-          color: Colors.black54,
-        ),
       ),
     );
   }
