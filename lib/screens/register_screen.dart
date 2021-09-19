@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:js_event_app/constants.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 class Register extends StatefulWidget {
@@ -25,18 +24,14 @@ class _RegisterState extends State<Register> {
 
   final _formkey = GlobalKey<FormState>();
 
+  final _keySubmit = GlobalKey<_SingUpFormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: Stack(
         fit: StackFit.expand,
         children: [
-          SvgPicture.asset(
-            "assets/img/Sign_Up_bg.svg",
-            height: MediaQuery.of(context).size.height,
-            fit: BoxFit.fill,
-          ),
           Center(
             child: SafeArea(
               child: SingleChildScrollView(
@@ -53,7 +48,7 @@ class _RegisterState extends State<Register> {
                       children: [
                         const Text("Aleady Hava an account?"),
                         TextButton(
-                          onPressed: () => print("sing in clicked"),
+                          onPressed: () {},
                           child: const Text(
                             "Sing in",
                             style: TextStyle(fontWeight: FontWeight.bold),
@@ -64,7 +59,7 @@ class _RegisterState extends State<Register> {
                     const SizedBox(
                       height: defaultPadding * 2,
                     ),
-                    SingUpForm(formkey: _formkey),
+                    SingUpForm(key: _keySubmit, formkey: _formkey),
                     const SizedBox(
                       height: defaultPadding * 2,
                     ),
@@ -74,6 +69,7 @@ class _RegisterState extends State<Register> {
                         onPressed: () {
                           if (_formkey.currentState!.validate()) {
                             _formkey.currentState!.save();
+                            _keySubmit.currentState!.printValues();
                           }
                         },
                         child: const Text("Sing Up"),
@@ -90,11 +86,16 @@ class _RegisterState extends State<Register> {
   }
 }
 
-class SingUpForm extends StatelessWidget {
-  SingUpForm({Key? key, required this.formkey}) : super(key: key);
+class SingUpForm extends StatefulWidget {
+  const SingUpForm({Key? key, required this.formkey}) : super(key: key);
 
   final GlobalKey formkey;
 
+  @override
+  State<SingUpForm> createState() => _SingUpFormState();
+}
+
+class _SingUpFormState extends State<SingUpForm> {
   late String _name, _lastname, _email, _phoneNumber, _password;
 
   void printValues() {
@@ -108,7 +109,7 @@ class SingUpForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formkey,
+      key: widget.formkey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

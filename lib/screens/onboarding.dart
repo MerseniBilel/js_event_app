@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:js_event_app/constants.dart';
 import 'package:js_event_app/models/onboarding_model.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -86,7 +87,7 @@ class _OnBoardingState extends State<OnBoarding> {
               width: currentIndex == index ? _width : 18,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(kDefaultPadding),
-                color: index == currentIndex ? Colors.blueGrey : Colors.grey,
+                color: index == currentIndex ? primaryColor : Colors.grey,
               ),
             ),
           ),
@@ -96,7 +97,7 @@ class _OnBoardingState extends State<OnBoarding> {
           height: 60,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: currentIndex == 2 ? Colors.blueGrey : null),
+              color: currentIndex == 2 ? primaryColor : null),
           width: MediaQuery.of(context).size.width,
           margin: const EdgeInsets.all(40),
           child: Row(
@@ -131,17 +132,16 @@ class _OnBoardingState extends State<OnBoarding> {
                         },
                         child: const Text(
                           "Skip",
-                          style: TextStyle(color: Colors.blueGrey),
+                          style: TextStyle(color: textColor),
                         )),
                     IconButton(
-                      onPressed: () {
-                        _controller.nextPage(
-                            duration: const Duration(milliseconds: 400),
-                            curve: Curves.easeIn);
-                      },
-                      icon: const Icon(Icons.arrow_forward_ios),
-                      color: Colors.black,
-                    )
+                        onPressed: () {
+                          _controller.nextPage(
+                              duration: const Duration(milliseconds: 400),
+                              curve: Curves.easeIn);
+                        },
+                        icon: const Icon(Icons.arrow_forward_ios),
+                        color: primaryColor)
                   ],
           ),
         ),

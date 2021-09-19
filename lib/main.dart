@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Js event app',
         theme: ThemeData(
+          scaffoldBackgroundColor: backgroundColor,
           primarySwatch: Colors.blue,
           primaryColor: primaryColor,
           textTheme: Theme.of(context).textTheme.apply(displayColor: textColor),
