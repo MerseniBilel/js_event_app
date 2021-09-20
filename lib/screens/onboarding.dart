@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:js_event_app/constants.dart';
 import 'package:js_event_app/models/onboarding_model.dart';
+import 'package:js_event_app/screens/register_screen.dart';
+import 'package:js_event_app/widgets/bouncy_page_route.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({Key? key}) : super(key: key);
@@ -114,8 +116,8 @@ class _OnBoardingState extends State<OnBoarding> {
                       ),
                       child: TextButton(
                           onPressed: () {
-                            Navigator.of(context)
-                                .pushReplacementNamed("register");
+                            Navigator.pushReplacement(
+                                context, BouncyPageRoute(widget: Register()));
                           },
                           child: const Text(
                             "Continue",

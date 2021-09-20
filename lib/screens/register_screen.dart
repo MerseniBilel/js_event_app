@@ -6,15 +6,9 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:js_event_app/constants.dart';
 import 'package:js_event_app/widgets/textfield_widget.dart';
 
-class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
+class Register extends StatelessWidget {
+  Register({Key? key}) : super(key: key);
 
-  @override
-  _RegisterState createState() => _RegisterState();
-}
-
-class _RegisterState extends State<Register> {
-  // default styling for header text
   static const headerTextStyle = TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 18,
@@ -49,7 +43,9 @@ class _RegisterState extends State<Register> {
                       children: [
                         const Text("Aleady Hava an account?"),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushNamed("login");
+                          },
                           child: const Text(
                             "Sing in",
                             style: TextStyle(fontWeight: FontWeight.bold),
