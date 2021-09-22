@@ -116,8 +116,8 @@ class _OnBoardingState extends State<OnBoarding> {
                       ),
                       child: TextButton(
                           onPressed: () {
-                            Navigator.pushReplacement(
-                                context, BouncyPageRoute(widget: Register()));
+                            Navigator.pushReplacement(context,
+                                BouncyPageRoute(widget: const Register()));
                           },
                           child: const Text(
                             "Continue",

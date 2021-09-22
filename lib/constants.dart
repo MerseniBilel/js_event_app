@@ -7,6 +7,8 @@ const textColor = Color(0xFF35364F);
 const backgroundColor = Color(0xFFE6EFF9);
 const redColor = Color(0xFFE85050);
 
+const String baseUrl = "http://88a1-197-26-178-122.ngrok.io";
+
 // default padding
 const defaultPadding = 16.0;
 

@@ -15,7 +15,7 @@ class User {
   String name;
   String lastname;
   String email;
-  String password;
+  String? password;
   String? image;
 
   factory User.fromJson(Map<String, dynamic> json) => User(

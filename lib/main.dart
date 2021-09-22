@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         home: const OnBoarding(),
         routes: {
           "login": (context) => Login(),
-          "register": (context) => Register(),
+          "register": (context) => const Register(),
           "home": (context) => const Home(),
         });
   }

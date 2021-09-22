@@ -1,18 +1,20 @@
 // this file contains all user's http requestes
 
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
+import 'package:js_event_app/constants.dart';
 import 'package:js_event_app/models/user_model.dart';
 import 'dart:math';
 
 abstract class UserRepo {
   Future<void> login(String email, String password);
-  Future<User> register(User user);
+  Future<User?> register(User user);
 }
 
 class UserService implements UserRepo {
-  static const String baseUrl = "http://10.0.2.2:3033/api"; // base api url
-  static const String _userEndPoint = "/users"; // the user end point
+  static const String userUrl = baseUrl + "/api/users"; // base api url
 
   // this is the random image avatar list
   static const List spritesOptions = [
@@ -30,7 +32,7 @@ class UserService implements UserRepo {
 
   // register
   @override
-  Future<User> register(User user) async {
+  Future<User?> register(User user) async {
     // create an image
     //"https://avatars.dicebear.com/api/{}/{}.svg"
     Random random = Random();
@@ -39,18 +41,23 @@ class UserService implements UserRepo {
         "https://avatars.dicebear.com/api/$randomChoice/${user.name}.svg";
 
     // create the body
-    Object body = {
+    final body = jsonEncode({
       "name": user.name,
       "lastname": user.lastname,
       "email": user.email,
       "password": user.password,
       "image": avatarImage
+    });
+
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
     };
 
-    final header = {"Content-Type": "application/json"};
-
-    Uri uri = Uri.https(baseUrl, _userEndPoint);
-    Response response = await http.post(uri, body: body, headers: header);
+    Uri uri = Uri.parse(userUrl);
+    Response response = await http.post(uri, body: body, headers: headers);
+    if (response.statusCode != 200) {
+      return null;
+    }
     User logedInUser = userFromJson(response.body);
     return logedInUser;
   }
