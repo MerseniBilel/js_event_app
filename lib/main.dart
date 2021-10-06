@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
           ),
           fontFamily: GoogleFonts.sora().fontFamily,
         ),
-        home: const Home(),
+        home: const OnBoarding(),
         routes: {
           "register": (context) => const Register(),
           "home": (context) => const Home(),

@@ -136,7 +136,9 @@ class _SingUpFormState extends State<SingUpForm> {
             _error = true;
             _isloading = false;
           });
+          print("error");
         } else {
+          print("every thing is okey");
           Navigator.of(context)
               .pushReplacementNamed("home", arguments: {"logedUser": newUser});
         }
