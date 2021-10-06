@@ -7,7 +7,7 @@ const textColor = Color(0xFF35364F);
 const backgroundColor = Color(0xFFE6EFF9);
 const redColor = Color(0xFFE85050);
 
-const String baseUrl = "http://88a1-197-26-178-122.ngrok.io";
+const String baseUrl = "http://6120-41-62-162-9.ngrok.io";
 
 // default padding
 const defaultPadding = 16.0;
@@ -23,8 +23,13 @@ OutlineInputBorder textFieldBorder = OutlineInputBorder(
 final passwordValidator = MultiValidator(
   [
     RequiredValidator(errorText: 'password is required'),
-    MinLengthValidator(8, errorText: 'password must be at least 8 digits long'),
-    PatternValidator(r'(?=.*?[#?!@$%^&*-])',
-        errorText: 'passwords must have at least one special character')
+    MinLengthValidator(6, errorText: 'password must be at least 6 digits long'),
   ],
+);
+
+BoxShadow kDefaultShadow = BoxShadow(
+  color: Colors.grey.withOpacity(0.2),
+  spreadRadius: 5,
+  blurRadius: 7,
+  offset: const Offset(0, 3),
 );

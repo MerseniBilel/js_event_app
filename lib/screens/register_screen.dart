@@ -48,20 +48,18 @@ class _RegisterState extends State<Register> {
                     _hidebutton
                         ? const SizedBox()
                         : const Text(
-                            "Create Account",
+                            "Welcome Back",
                             style: Register.headerTextStyle,
                           ),
                     _hidebutton
                         ? const SizedBox()
                         : Row(
                             children: [
-                              const Text("Aleady Hava an account?"),
+                              const Text("Want To Learn More?"),
                               TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pushNamed("login");
-                                },
+                                onPressed: () {},
                                 child: const Text(
-                                  "Sing in",
+                                  "Facebook",
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                               )
@@ -117,7 +115,7 @@ class SingUpForm extends StatefulWidget {
 }
 
 class _SingUpFormState extends State<SingUpForm> {
-  late String _name, _lastname, _email, _password;
+  late String _email, _password;
 
   bool _isloading = false;
   bool _error = false;
@@ -128,10 +126,8 @@ class _SingUpFormState extends State<SingUpForm> {
       _isloading = true;
     });
 
-    User userForm = User(
-        name: _name, lastname: _lastname, email: _email, password: _password);
     UserService userRepo = UserService();
-    Future<User?> logedInUser = userRepo.register(userForm);
+    Future<User?> logedInUser = userRepo.login(_email, _password);
     logedInUser.then((value) {
       setState(() {
         newUser = value;
@@ -163,7 +159,7 @@ class _SingUpFormState extends State<SingUpForm> {
                     ? const Align(
                         alignment: Alignment.center,
                         child: Text(
-                          "Account allredy exsit try with another email or sign in ",
+                          "Error while siginig in, Check Your Credientials",
                           style: TextStyle(
                             color: Colors.red,
                             fontWeight: FontWeight.bold,
@@ -171,23 +167,6 @@ class _SingUpFormState extends State<SingUpForm> {
                         ),
                       )
                     : const Text(''),
-                const TextFieldName(fieldText: "Name"),
-                TextFormField(
-                  validator: RequiredValidator(errorText: "Name is required"),
-                  decoration: const InputDecoration(
-                    hintText: "Bilel",
-                  ),
-                  onSaved: (name) => _name = name!,
-                ),
-                const TextFieldName(fieldText: "Lastname"),
-                TextFormField(
-                  validator:
-                      RequiredValidator(errorText: "LastName is required"),
-                  decoration: const InputDecoration(
-                    hintText: "Merseni",
-                  ),
-                  onSaved: (lastname) => _lastname = lastname!,
-                ),
                 const TextFieldName(fieldText: "Email"),
                 TextFormField(
                   validator: EmailValidator(errorText: "Use a valid email"),

@@ -25,7 +25,6 @@ class User {
         password: json["password"],
         image: json["image"],
       );
-
   Map<String, dynamic> toJson() => {
         "name": name,
         "lastname": lastname,

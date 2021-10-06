@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:js_event_app/constants.dart';
+import 'package:js_event_app/screens/details.dart';
 import 'package:js_event_app/screens/home_screen.dart';
-import 'package:js_event_app/screens/login_screen.dart';
 import 'package:js_event_app/screens/onboarding.dart';
 import 'package:js_event_app/screens/register_screen.dart';
 
@@ -41,11 +41,11 @@ class MyApp extends StatelessWidget {
           ),
           fontFamily: GoogleFonts.sora().fontFamily,
         ),
-        home: const OnBoarding(),
+        home: const Home(),
         routes: {
-          "login": (context) => Login(),
           "register": (context) => const Register(),
           "home": (context) => const Home(),
+          "details": (context) => Details()
         });
   }
 }

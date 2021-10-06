@@ -64,5 +64,26 @@ class UserService implements UserRepo {
 
   // login
   @override
-  Future<void> login(String email, String password) async {}
+  Future<User?> login(String email, String password) async {
+    // the url
+    const String url = baseUrl + "/api/auth";
+
+    // body we going to send
+    final body = jsonEncode({
+      "email": email,
+      "password": password,
+    });
+    // the header
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
+
+    Uri uri = Uri.parse(url);
+    Response response = await http.post(uri, body: body, headers: headers);
+    if (response.statusCode != 200) {
+      return null;
+    }
+    User logedInUser = userFromJson(response.body);
+    return logedInUser;
+  }
 }
